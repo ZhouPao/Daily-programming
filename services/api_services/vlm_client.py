@@ -19,7 +19,7 @@ class VLM:
 
         self.dashscope_client = (
             QwenVLClient(
-                api_key=dashscope_key,
+                api_key=dasope_key,
                 base_url=dashscope_base_url or Config.DASHSCOPE_BASE_URL
             )
             if dashscope_key else None
@@ -61,7 +61,6 @@ class VLM:
         video_urls = [self._to_dashscope_file_url(path, allow_data_url=False) for path in video_paths or []]
         return self.dashscope_client.chat(
             text=prompt,
-            images=image_urls,
             videos=video_urls,
             model=selected_model,
             stream=False,
@@ -86,7 +85,7 @@ class VLM:
                 return f"file://{os.path.abspath(temp_path)}"
             except Exception as e:
                 print(f"Error processing base64 image: {e}")
-                raise ValueError(f"无法解析 base64 图片: {e}")
+                raise ValueError(f"无 base64 图片: {e}")
 
         if path.startswith("http") or path.startswith("file://"):
             return path

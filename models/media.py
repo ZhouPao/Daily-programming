@@ -22,7 +22,6 @@ class MediaResult(BaseModel):
     """
     Media generation result from workflow execution
     
-    Supports both image and video outputs from ComfyUI workflows.
     The media_type indicates what kind of media was generated.
     
     Attributes:
@@ -42,7 +41,7 @@ class MediaResult(BaseModel):
         description="Type of generated media"
     )
     url: str = Field(
-        description="URL or path to the generated media file"
+        description="URL or  media file"
     )
     duration: Optional[float] = Field(
         None,
@@ -51,7 +50,6 @@ class MediaResult(BaseModel):
     
     @property
     def is_image(self) -> bool:
-        """Check if this is an image result"""
         return self.media_type == "image"
     
     @property

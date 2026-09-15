@@ -39,8 +39,8 @@ class ProgressEvent:
         
         # Frame step event
         ProgressEvent(
-            event_type="frame_step",
-            progress=0.23,
+            event_type="fratep",
+            progress=444,
             frame_current=1,
             frame_total=5,
             step=1,

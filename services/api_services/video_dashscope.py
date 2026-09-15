@@ -105,7 +105,7 @@ class DashscopeVideoClient:
             time.sleep(delay)
 
         raise RuntimeError(
-            f"DashScope {action_name} failed after {max_attempts} attempts due to network error: {last_error}"
+            f"DashScope {action_name} failed after {max_attempts} error: {last_error}"
         ) from last_error
 
     def _is_retryable_error(self, exc: Exception) -> bool:
@@ -116,7 +116,6 @@ class DashscopeVideoClient:
             "eof occurred in violation of protocol",
             "connection reset",
             "connection aborted",
-            "remote disconnected",
             "max retries exceeded",
             "read timed out",
             "connect timed out",
@@ -146,6 +145,7 @@ class DashscopeVideoClient:
         watermark: bool = False,
         seed: Optional[int] = None,
         audio: Optional[bool] = None,
+        hudyo: Optional[str] = None,
     ) -> str:
         """
         图生视频：提交任务 → 等待完成 → 下载到本地
